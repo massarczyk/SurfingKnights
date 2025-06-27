@@ -1,0 +1,48 @@
+# Minimal macro for batch running without visualization
+
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+/particle/verbose 0
+
+/run/numberOfThreads 4
+/run/initialize
+
+# Detector setup
+/detector/setDetector Morgan
+/detector/setMaterial Cr
+/detector/setSampleMass 1000.1 g
+/detector/setSampleHeight 33 mm
+
+# Output
+/analysis/setFileName Cr
+/analysis/verbose 0
+/analysis/openFile
+
+# Geometry optimization
+/run/optimizeGeometry
+
+# Source settings
+/gps/particle gamma
+/gps/pos/type Volume
+/gps/pos/shape Cylinder
+/gps/pos/centre 0 0 90 mm
+/gps/pos/halfz 50 mm
+/gps/pos/radius 75.5 mm
+/gps/pos/inner_radius 50.5 mm
+/gps/pos/confine Sample_phys
+/gps/ang/type iso
+
+/gps/ene/type Lin
+/gps/ene/min 10 keV
+/gps/ene/max 3 MeV
+/gps/ene/gradient 0
+/gps/ene/intercept 1
+
+
+/run/printProgress 1000000
+
+# Run N events
+/run/beamOn 100000000
+#/run/beamOn 10000
